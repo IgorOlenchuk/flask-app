@@ -54,12 +54,12 @@ jobs:
           with:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          #passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен паролем
-          script: |
-              sudo docker pull ashmanx/flask_app:latest
-              sudo docker stop $(sudo docker ps -a -q)
-              sudo docker run --rm -d -p 5000:5000 ashmanx/flask_app:latest
+            key: ${{ secrets.SSH_KEY }}
+            passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен паролем
+            script: |
+                sudo docker pull ashmanx/flask_app:latest
+                sudo docker stop $(sudo docker ps -a -q)
+                sudo docker run --rm -d -p 5000:5000 ashmanx/flask_app:latest
   
   send_message:
     runs-on: ubuntu-latest
