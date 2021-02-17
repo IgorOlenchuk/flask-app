@@ -52,14 +52,14 @@ jobs:
         - name: executing remote ssh commands to deploy
           uses: appleboy/ssh-action@master
           with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }} # если ваш ssh-ключ защищен паролем
           script: |
-              sudo docker pull <имя-пользователя>/<имя-репозитория>
+              sudo docker pull ashmanx/flask_app:latest
               sudo docker stop $(sudo docker ps -a -q)
-              sudo docker run --rm -d -p 5000:5000 <имя-пользователя>/<имя-репозитория>
+              sudo docker run --rm -d -p 5000:5000 ashmanx/flask_app:latest
   
   send_message:
     runs-on: ubuntu-latest
